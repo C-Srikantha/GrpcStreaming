@@ -1,0 +1,19 @@
+syntax="proto3";
+package demo;
+option go_package=".;protobuff";
+message Input{
+    string name=1;
+}
+message Output{
+    string result=1;
+}
+message InputNum{
+    int32 num=1;
+}
+message AddOutput{
+    int32 sum=1;
+}
+service Streaming{
+    rpc ServerSideStreaming(Input) returns(stream Output){}
+    rpc ClientSideStreaming(stream InputNum) returns(AddOutput){}
+}
